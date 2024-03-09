@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Generated Numbers</title>
+</head>
+<body>
+    <h1>Generated Numbers</h1>
+    <table>
+        <tr>
+            {% set ns = namespace(count=0) %}
+            {% for number in numbers %}
+                <td>{{ number }}</td>
+                {% set ns.count = ns.count + 1 %}
+                {% if ns.count % 5 == 0 %}
+                    </tr><tr>
+                {% endif %}
+            {% endfor %}
+            {% for _ in range(5 - (ns.count % 5)) %}
+                {% if ns.count % 5 != 0 %}
+                    <td></td>
+                {% endif %}
+            {% endfor %}
+        </tr>
+    </table>
+    <a href="/">Generate more numbers</a>
+</body>
+</html>
